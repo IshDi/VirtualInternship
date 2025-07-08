@@ -9,12 +9,13 @@ import java.util.Date;
 
 class TravelCalculatePremiumServiceImplTest {
 
+    private TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl();
+
     @Test
     public void testAllParameters1() {
         Date date1 = new Date(2025, 1, 1);
         Date date2 = new Date(2025, 1, 2);
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Nikita", "Ivanov", date1, date2);
-        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl();
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         Assertions.assertEquals(request.getPersonFirstName(), response.getPersonFirstName());
         Assertions.assertEquals(request.getPersonLastName(), response.getPersonLastName());
@@ -32,7 +33,6 @@ class TravelCalculatePremiumServiceImplTest {
         request.setAgreementDateFrom(date1);
         request.setAgreementDateTo(date2);
 
-        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl();
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         Assertions.assertEquals(request.getPersonFirstName(), response.getPersonFirstName());
         Assertions.assertEquals(request.getPersonLastName(), response.getPersonLastName());
@@ -44,7 +44,6 @@ class TravelCalculatePremiumServiceImplTest {
     public void testPersonFirstName1() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
         request.setPersonFirstName("Sasha");
-        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl();
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         Assertions.assertEquals(request.getPersonFirstName(), response.getPersonFirstName());
     }
@@ -53,7 +52,6 @@ class TravelCalculatePremiumServiceImplTest {
     public void testPersonFirstName2() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
         request.setPersonFirstName("Andrey");
-        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl();
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         Assertions.assertNotEquals("Sasha", response.getPersonFirstName());
     }
@@ -64,7 +62,6 @@ class TravelCalculatePremiumServiceImplTest {
         request.setPersonFirstName("Andrey");
         request.setPersonFirstName("Igor");
         request.setPersonFirstName("Petr");
-        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl();
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         Assertions.assertEquals(request.getPersonFirstName(), response.getPersonFirstName());
     }
@@ -73,7 +70,6 @@ class TravelCalculatePremiumServiceImplTest {
     public void testPersonLastName1() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
         request.setPersonLastName("Ivanov");
-        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl();
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         Assertions.assertEquals(request.getPersonLastName(), response.getPersonLastName());
     }
@@ -82,7 +78,6 @@ class TravelCalculatePremiumServiceImplTest {
     public void testPersonLastName2() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
         request.setPersonLastName("Sidorov");
-        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl();
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         Assertions.assertNotEquals("Ivanov", response.getPersonLastName());
     }
@@ -93,9 +88,60 @@ class TravelCalculatePremiumServiceImplTest {
         request.setPersonLastName("Makarov");
         request.setPersonLastName("Smirnov");
         request.setPersonLastName("Petrov");
-        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl();
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         Assertions.assertEquals(request.getPersonLastName(), response.getPersonLastName());
+    }
+
+    @Test
+    public void testAgreementDateFrom1() {
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
+        request.setAgreementDateFrom(new Date());
+        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+        Assertions.assertEquals(request.getAgreementDateFrom(), response.getAgreementDateFrom());
+    }
+
+    @Test
+    public void testAgreementDateFrom2() {
+        Date date1 = new Date(2025, 1, 2);
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
+        request.setAgreementDateFrom(date1);
+        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+        Assertions.assertEquals(request.getAgreementDateFrom(), response.getAgreementDateFrom());
+    }
+
+    @Test
+    public void testAgreementDateFrom3() {
+        Date date1 = new Date(2025, 1, 2);
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
+        request.setAgreementDateFrom(date1);
+        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+        Assertions.assertNotEquals(new Date(), response.getAgreementDateFrom());
+    }
+
+    @Test
+    public void testAgreementDateTo1() {
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
+        request.setAgreementDateTo(new Date());
+        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+        Assertions.assertEquals(request.getAgreementDateTo(), response.getAgreementDateTo());
+    }
+
+    @Test
+    public void testAgreementDateTo2() {
+        Date date1 = new Date(2025, 1, 2);
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
+        request.setAgreementDateTo(date1);
+        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+        Assertions.assertEquals(request.getAgreementDateTo(), response.getAgreementDateTo());
+    }
+
+    @Test
+    public void testAgreementDateTo3() {
+        Date date1 = new Date(2025, 1, 2);
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
+        request.setAgreementDateTo(date1);
+        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+        Assertions.assertNotEquals(new Date(), response.getAgreementDateTo());
     }
 
 }
