@@ -7,3 +7,4 @@
 Были использованы следующие технологии:
 - Gradle
 - IntelliJ IDEA
+- JUnit
