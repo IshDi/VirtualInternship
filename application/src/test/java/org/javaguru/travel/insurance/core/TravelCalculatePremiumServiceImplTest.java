@@ -3,13 +3,21 @@ package org.javaguru.travel.insurance.core;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
 class TravelCalculatePremiumServiceImplTest {
 
-    private TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl();
+    private DateTimeService dateTimeService;
+    private TravelCalculatePremiumServiceImpl service;
+
+    @BeforeEach
+    public void setUp() {
+        dateTimeService = new DateTimeService();
+        service = new TravelCalculatePremiumServiceImpl(dateTimeService);
+    }
 
     private TravelCalculatePremiumRequest createRequest() {
         Date date1 = new Date(2025, 1, 1);

@@ -11,6 +11,11 @@ import java.util.Date;
 
 @Component
 class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
+    private DateTimeService dateTimeService;
+
+    public TravelCalculatePremiumServiceImpl(DateTimeService dateTimeService) {
+        this.dateTimeService = dateTimeService;
+    }
 
     @Override
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
@@ -20,17 +25,9 @@ class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService
         response.setAgreementDateFrom(request.getAgreementDateFrom());
         response.setAgreementDateTo(request.getAgreementDateTo());
 
-        long days = calculateDaysBetweenDate(request.getAgreementDateFrom(), request.getAgreementDateTo());
+        long days = dateTimeService.getDaysBetween(request.getAgreementDateFrom(), request.getAgreementDateTo());
         response.setAgreementPrice(new BigDecimal(days));
 
         return response;
     }
-
-    public long calculateDaysBetweenDate(Date dateFrom, Date dateTo) {
-        Instant startInstant =  dateFrom.toInstant();
-        Instant endInstant = dateTo.toInstant();
-        long days = ChronoUnit.DAYS.between(startInstant, endInstant);
-        return days;
-    }
-
 }
