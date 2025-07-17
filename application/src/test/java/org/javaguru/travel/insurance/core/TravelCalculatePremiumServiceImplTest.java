@@ -5,158 +5,138 @@ import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Date;
 
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
 class TravelCalculatePremiumServiceImplTest {
 
+    @Mock
     private DateTimeService dateTimeService;
+
+    @InjectMocks
     private TravelCalculatePremiumServiceImpl service;
 
-    @BeforeEach
-    public void setUp() {
-        dateTimeService = new DateTimeService();
-        service = new TravelCalculatePremiumServiceImpl(dateTimeService);
-    }
+    private TravelCalculatePremiumRequest request;
+    private TravelCalculatePremiumResponse response;
 
     private TravelCalculatePremiumRequest createRequest() {
-        Date date1 = new Date(2025, 1, 1);
-        Date date2 = new Date(2025, 1, 2);
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Nikita", "Ivanov", date1, date2);
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
+                "Nikita",
+                "Ivanov",
+                new Date(),
+                new Date()
+        );
         return request;
     }
 
-    @Test
-    public void testAllParameters1() {
-        TravelCalculatePremiumRequest request = createRequest();
-        TravelCalculatePremiumResponse response = service.calculatePremium(request);
-        Assertions.assertEquals(request.getPersonFirstName(), response.getPersonFirstName());
-        Assertions.assertEquals(request.getPersonLastName(), response.getPersonLastName());
-        Assertions.assertEquals(request.getAgreementDateFrom(), response.getAgreementDateFrom());
-        Assertions.assertEquals(request.getAgreementDateTo(), response.getAgreementDateTo());
-        Assertions.assertNotNull(response.getAgreementPrice());
+    @BeforeEach
+    public void setUp() {
+        request = createRequest();
+        when(dateTimeService
+                        .getDaysBetween(request.getAgreementDateFrom(),
+                                request.getAgreementDateTo()))
+                .thenReturn(0L);
     }
 
     @Test
-    public void testAllParameters2() {
-        TravelCalculatePremiumRequest request = createRequest();
-        Date date1 = new Date(2020, 5, 5);
-        Date date2 = new Date(2025, 5, 7);
+    public void testPersonFirstName_1() {
+        response = service.calculatePremium(request);
+        Assertions.assertEquals(request.getPersonFirstName(), response.getPersonFirstName());
+    }
+
+    @Test
+    public void testPersonFirstName_2() {
         request.setPersonFirstName("Anna");
         request.setPersonLastName("Rostova");
-        request.setAgreementDateFrom(date1);
-        request.setAgreementDateTo(date2);
 
-        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+        response = service.calculatePremium(request);
         Assertions.assertEquals(request.getPersonFirstName(), response.getPersonFirstName());
-        Assertions.assertEquals(request.getPersonLastName(), response.getPersonLastName());
-        Assertions.assertEquals(request.getAgreementDateFrom(), response.getAgreementDateFrom());
-        Assertions.assertEquals(request.getAgreementDateTo(), response.getAgreementDateTo());
-        Assertions.assertNotNull(response.getAgreementPrice());
     }
 
     @Test
-    public void testPersonFirstName1() {
-        TravelCalculatePremiumRequest request = createRequest();
+    public void testPersonFirstName_3() {
         request.setPersonFirstName("Sasha");
-        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+        response = service.calculatePremium(request);
         Assertions.assertEquals(request.getPersonFirstName(), response.getPersonFirstName());
     }
 
     @Test
-    public void testPersonFirstName2() {
-        TravelCalculatePremiumRequest request = createRequest();
+    public void testPersonFirstName_4() {
         request.setPersonFirstName("Andrey");
-        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+        response = service.calculatePremium(request);
         Assertions.assertNotEquals("Sasha", response.getPersonFirstName());
     }
 
     @Test
-    public void testPersonFirstName3() {
-        TravelCalculatePremiumRequest request = createRequest();
+    public void testPersonFirstName_5() {
         request.setPersonFirstName("Andrey");
         request.setPersonFirstName("Igor");
         request.setPersonFirstName("Petr");
-        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+        response = service.calculatePremium(request);
         Assertions.assertEquals(request.getPersonFirstName(), response.getPersonFirstName());
     }
 
     @Test
-    public void testPersonLastName1() {
-        TravelCalculatePremiumRequest request = createRequest();
-        request.setPersonLastName("Ivanov");
-        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+    public void testPersonLastName_1() {
+        response = service.calculatePremium(request);
         Assertions.assertEquals(request.getPersonLastName(), response.getPersonLastName());
     }
 
     @Test
-    public void testPersonLastName2() {
-        TravelCalculatePremiumRequest request = createRequest();
+    public void testPersonLastName_2() {
+        request.setPersonFirstName("Anna");
+        request.setPersonLastName("Rostova");
+
+        response = service.calculatePremium(request);
+        Assertions.assertEquals(request.getPersonLastName(), response.getPersonLastName());
+    }
+
+    @Test
+    public void testPersonLastName_3() {
+        request.setPersonLastName("Ivanov");
+        response = service.calculatePremium(request);
+        Assertions.assertEquals(request.getPersonLastName(), response.getPersonLastName());
+    }
+
+    @Test
+    public void testPersonLastName_4() {
         request.setPersonLastName("Sidorov");
-        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+        response = service.calculatePremium(request);
         Assertions.assertNotEquals("Ivanov", response.getPersonLastName());
     }
 
     @Test
-    public void testPersonLastName3() {
-        TravelCalculatePremiumRequest request = createRequest();
+    public void testPersonLastName_5() {
         request.setPersonLastName("Makarov");
         request.setPersonLastName("Smirnov");
         request.setPersonLastName("Petrov");
-        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+        response = service.calculatePremium(request);
         Assertions.assertEquals(request.getPersonLastName(), response.getPersonLastName());
     }
 
     @Test
-    public void testAgreementDateFrom1() {
-        TravelCalculatePremiumRequest request = createRequest();
-        request.setAgreementDateFrom(new Date());
-        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+    public void testAgreementDateFrom_1() {
+        response = service.calculatePremium(request);
         Assertions.assertEquals(request.getAgreementDateFrom(), response.getAgreementDateFrom());
     }
 
     @Test
-    public void testAgreementDateFrom2() {
-        TravelCalculatePremiumRequest request = createRequest();
-        Date date1 = new Date(2025, 1, 2);
-        request.setAgreementDateFrom(date1);
-        TravelCalculatePremiumResponse response = service.calculatePremium(request);
-        Assertions.assertEquals(request.getAgreementDateFrom(), response.getAgreementDateFrom());
-    }
-
-    @Test
-    public void testAgreementDateFrom3() {
-        TravelCalculatePremiumRequest request = createRequest();
-        Date date1 = new Date(2025, 1, 2);
-        request.setAgreementDateFrom(date1);
-        TravelCalculatePremiumResponse response = service.calculatePremium(request);
-        Assertions.assertNotEquals(new Date(), response.getAgreementDateFrom());
-    }
-
-    @Test
-    public void testAgreementDateTo1() {
-        TravelCalculatePremiumRequest request = createRequest();
-        request.setAgreementDateTo(new Date());
-        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+    public void testAgreementDateTo_1() {
+        response = service.calculatePremium(request);
         Assertions.assertEquals(request.getAgreementDateTo(), response.getAgreementDateTo());
     }
 
     @Test
-    public void testAgreementDateTo2() {
-        TravelCalculatePremiumRequest request = createRequest();
-        Date date1 = new Date(2025, 1, 2);
-        request.setAgreementDateTo(date1);
-        TravelCalculatePremiumResponse response = service.calculatePremium(request);
-        Assertions.assertEquals(request.getAgreementDateTo(), response.getAgreementDateTo());
-    }
-
-    @Test
-    public void testAgreementDateTo3() {
-        TravelCalculatePremiumRequest request = createRequest();
-        Date date1 = new Date(2025, 1, 2);
-        request.setAgreementDateTo(date1);
-        TravelCalculatePremiumResponse response = service.calculatePremium(request);
-        Assertions.assertNotEquals(new Date(), response.getAgreementDateTo());
+    public void testAgreementPrice() {
+        response = service.calculatePremium(request);
+        Assertions.assertNotNull(response.getAgreementPrice());
     }
 
 }

@@ -5,13 +5,12 @@ import org.springframework.stereotype.Component;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 @Component
-public class DateTimeService {
-    long getDaysBetween(Date date1, Date date2) {
-        Instant startInstant =  date1.toInstant();
-        Instant endInstant = date2.toInstant();
+class DateTimeService {
+    public long getDaysBetween(Date from, Date to) {
+        Instant startInstant =  from.toInstant();
+        Instant endInstant = to.toInstant();
         long days = ChronoUnit.DAYS.between(startInstant, endInstant);
         return days;
     }

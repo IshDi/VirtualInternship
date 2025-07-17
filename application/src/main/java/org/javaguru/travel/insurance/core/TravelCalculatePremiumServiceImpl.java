@@ -5,9 +5,6 @@ import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
 
 @Component
 class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
