@@ -23,8 +23,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidatePersonFirstName_1() {
         when(request.getPersonFirstName()).thenReturn("John");
         when(request.getPersonLastName()).thenReturn("Smirnova");
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(0, list.size());
     }
@@ -33,8 +33,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidatePersonFirstName_2() {
         when(request.getPersonFirstName()).thenReturn(null);
         when(request.getPersonLastName()).thenReturn("Smirnova");
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(1, list.size());
     }
@@ -43,8 +43,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidatePersonFirstName_3() {
         when(request.getPersonFirstName()).thenReturn(null);
         when(request.getPersonLastName()).thenReturn("Smirnova");
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(list.get(0).getField(), "personFirstName");
     }
@@ -53,8 +53,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidatePersonFirstName_4() {
         when(request.getPersonFirstName()).thenReturn(null);
         when(request.getPersonLastName()).thenReturn("Smirnova");
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(list.get(0).getMessage(), "Must not be empty!");
     }
@@ -63,8 +63,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidatePersonFirstName_5() {
         when(request.getPersonFirstName()).thenReturn("");
         when(request.getPersonLastName()).thenReturn("Smirnova");
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(1, list.size());
     }
@@ -73,8 +73,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidatePersonFirstName_6() {
         when(request.getPersonFirstName()).thenReturn("");
         when(request.getPersonLastName()).thenReturn("Smirnova");
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(list.get(0).getField(), "personFirstName");
     }
@@ -83,8 +83,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidatePersonFirstName_7() {
         when(request.getPersonFirstName()).thenReturn("");
         when(request.getPersonLastName()).thenReturn("Smirnova");
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(list.get(0).getMessage(), "Must not be empty!");
     }
@@ -93,8 +93,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidatePersonLastName_1() {
         when(request.getPersonFirstName()).thenReturn("John");
         when(request.getPersonLastName()).thenReturn("Smirnova");
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(0, list.size());
     }
@@ -103,8 +103,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidatePersonLastName_2() {
         when(request.getPersonFirstName()).thenReturn("John");
         when(request.getPersonLastName()).thenReturn(null);
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(1, list.size());
     }
@@ -113,8 +113,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidatePersonLastName_3() {
         when(request.getPersonFirstName()).thenReturn("John");
         when(request.getPersonLastName()).thenReturn(null);
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(list.get(0).getField(), "personLastName");
     }
@@ -123,8 +123,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidatePersonLastName_4() {
         when(request.getPersonFirstName()).thenReturn("John");
         when(request.getPersonLastName()).thenReturn(null);
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(list.get(0).getMessage(), "Must not be empty!");
     }
@@ -133,8 +133,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidatePersonLastName_5() {
         when(request.getPersonFirstName()).thenReturn("John");
         when(request.getPersonLastName()).thenReturn("");
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(1, list.size());
     }
@@ -143,8 +143,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidatePersonLastName_6() {
         when(request.getPersonFirstName()).thenReturn("John");
         when(request.getPersonLastName()).thenReturn("");
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(list.get(0).getField(), "personLastName");
     }
@@ -153,8 +153,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidatePersonLastName_7() {
         when(request.getPersonFirstName()).thenReturn("John");
         when(request.getPersonLastName()).thenReturn("");
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(list.get(0).getMessage(), "Must not be empty!");
     }
@@ -163,8 +163,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testAgreementDateFrom_1() {
         when(request.getPersonFirstName()).thenReturn("John");
         when(request.getPersonLastName()).thenReturn("Smirnova");
-        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 1));
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(0, list.size());
     }
@@ -174,7 +174,7 @@ public class TravelCalculatePremiumRequestValidatorTest {
         when(request.getPersonFirstName()).thenReturn("John");
         when(request.getPersonLastName()).thenReturn("Smirnova");
         when(request.getAgreementDateFrom()).thenReturn(null);
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(1, list.size());
     }
@@ -184,7 +184,7 @@ public class TravelCalculatePremiumRequestValidatorTest {
         when(request.getPersonFirstName()).thenReturn("John");
         when(request.getPersonLastName()).thenReturn("Smirnova");
         when(request.getAgreementDateFrom()).thenReturn(null);
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(list.get(0).getField(), "agreementDateFrom");
     }
@@ -194,7 +194,7 @@ public class TravelCalculatePremiumRequestValidatorTest {
         when(request.getPersonFirstName()).thenReturn("John");
         when(request.getPersonLastName()).thenReturn("Smirnova");
         when(request.getAgreementDateFrom()).thenReturn(null);
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(list.get(0).getMessage(), "Must not be empty!");
     }
@@ -204,7 +204,7 @@ public class TravelCalculatePremiumRequestValidatorTest {
         when(request.getPersonFirstName()).thenReturn("John");
         when(request.getPersonLastName()).thenReturn("Smirnova");
         when(request.getAgreementDateFrom()).thenReturn(null);
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(1, list.size());
     }
@@ -213,8 +213,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testAgreementDateTo_1() {
         when(request.getPersonFirstName()).thenReturn("John");
         when(request.getPersonLastName()).thenReturn("Smirnova");
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 1));
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(0, list.size());
     }
@@ -259,13 +259,63 @@ public class TravelCalculatePremiumRequestValidatorTest {
         Assertions.assertEquals(1, list.size());
     }
 
+    @Test
+    public void testAgreementDate_1() {
+        when(request.getPersonFirstName()).thenReturn("John");
+        when(request.getPersonLastName()).thenReturn("Smirnova");
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
+        List<ValidationError> list = validator.validate(request);
+        Assertions.assertEquals(0, list.size());
+    }
+
+    @Test
+    public void testAgreementDate_2() {
+        when(request.getPersonFirstName()).thenReturn("John");
+        when(request.getPersonLastName()).thenReturn("Smirnova");
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 1));
+        List<ValidationError> list = validator.validate(request);
+        Assertions.assertEquals(1, list.size());
+    }
+
+    @Test
+    public void testAgreementDate_3() {
+        when(request.getPersonFirstName()).thenReturn("John");
+        when(request.getPersonLastName()).thenReturn("Smirnova");
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 1));
+        List<ValidationError> list = validator.validate(request);
+        Assertions.assertEquals(list.get(0).getField(), "agreementDate");
+    }
+
+    @Test
+    public void testAgreementDate_4() {
+        when(request.getPersonFirstName()).thenReturn("John");
+        when(request.getPersonLastName()).thenReturn("Smirnova");
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 1));
+        List<ValidationError> list = validator.validate(request);
+        Assertions.assertEquals(list.get(0).getMessage(), "The end date of the trip must be after the start date!");
+    }
+
+    @Test
+    public void testAgreementDate_5() {
+        when(request.getPersonFirstName()).thenReturn("John");
+        when(request.getPersonLastName()).thenReturn("Smirnova");
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 1));
+        List<ValidationError> list = validator.validate(request);
+        Assertions.assertEquals(1, list.size());
+    }
+
 
     @Test
     public void testValidate_1() {
         when(request.getPersonFirstName()).thenReturn("");
         when(request.getPersonLastName()).thenReturn("");
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(2, list.size());
     }
@@ -274,8 +324,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidate_2() {
         when(request.getPersonFirstName()).thenReturn(null);
         when(request.getPersonLastName()).thenReturn(null);
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(2, list.size());
     }
@@ -284,8 +334,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidate_3() {
         when(request.getPersonFirstName()).thenReturn(null);
         when(request.getPersonLastName()).thenReturn("");
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(2, list.size());
     }
@@ -294,8 +344,8 @@ public class TravelCalculatePremiumRequestValidatorTest {
     public void testValidate_4() {
         when(request.getPersonFirstName()).thenReturn("");
         when(request.getPersonLastName()).thenReturn(null);
-        when(request.getAgreementDateFrom()).thenReturn(new Date());
-        when(request.getAgreementDateTo()).thenReturn(new Date());
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 3));
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(2, list.size());
     }
@@ -338,5 +388,15 @@ public class TravelCalculatePremiumRequestValidatorTest {
         when(request.getAgreementDateTo()).thenReturn(null);
         List<ValidationError> list = validator.validate(request);
         Assertions.assertEquals(2, list.size());
+    }
+
+    @Test
+    public void testValidate_9() {
+        when(request.getPersonFirstName()).thenReturn("");
+        when(request.getPersonLastName()).thenReturn("");
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2025, 1, 2));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2025, 1, 1));
+        List<ValidationError> list = validator.validate(request);
+        Assertions.assertEquals(3, list.size());
     }
 }
