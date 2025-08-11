@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 public class TravelPremiumUnderwriting {
     private final DateTimeService dateTimeService;
 
-    long calculatePremium(TravelCalculatePremiumRequest request) {
-        return dateTimeService.getDaysBetween(request.getAgreementDateFrom(), request.getAgreementDateTo());
+    BigDecimal calculatePremium(TravelCalculatePremiumRequest request) {
+        return new BigDecimal(dateTimeService.getDaysBetween(request.getAgreementDateFrom(), request.getAgreementDateTo()));
     }
 }
